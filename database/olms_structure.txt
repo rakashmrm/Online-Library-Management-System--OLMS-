@@ -3,6 +3,7 @@
 -- Use this as a reference for your PHP INSERT, UPDATE, and SELECT queries!
 -- =====================================================================================
 -- 
+--
 -- TABLE: users
 -- id             INT             Primary Key, Auto Increment
 -- username       VARCHAR(50)     The user's display name
