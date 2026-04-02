@@ -93,3 +93,27 @@ olms-web-app/
 3. Write your code and test it locally.
 4. Push the changes to your personal fork.
 5. Submit a **Pull Request (PR)** to this main repository.
+
+## Page Template
+Copy and paste this into the top and bottom of your PHP files.
+
+Note on Paths: If your file is inside a folder (like auth/login.php), you must use ../ to find the includes folder. If your file is in the main root (like index.php), you do not need the ../.
+
+For files inside folders (auth/, core/, catalog/, admin/, operations/):
+
+```text
+<?php 
+// 1. Include the header (This handles DB connection, Session, Navbar and CSS)
+include '../includes/header.php'; 
+?>
+
+<div class="card p-4 shadow-sm">
+    <h2>Page Title</h2>
+    <p>Start building your feature here!</p>
+</div>
+
+<?php 
+// 2. Include the footer (This handles JavaScript and closes tags)
+include '../includes/footer.php'; 
+?>
+```
