@@ -22,7 +22,7 @@ This project is divided into 5 core modules, ensuring a balanced workload across
 * **Member 2 Thiseni Nudara|@Thiseni-Nuda):** User Authentication (Login, Signup, Logout & Session Management)
 * **Member 3 (Name|@username):** Catalog & UI Lead (Book Search, Discovery, Global CSS/Styling)
 * **Member 4 (Amaya Senadheera|@Amaya-Senadheera):** Admin Panel (Inventory Management: Add, Edit, Delete Books)
-* **Member 5 (Name|@username):** Library Operations (Borrowing Logic, Return Actions, & Reviews)
+* **Member 5 (Shehara|@sanjanashehara0707):** Library Operations (Borrowing Logic, Return Actions, & Reviews)
 
 ## 📁 Project Structure
 To prevent merge conflicts and keep our code organized, we are using a modular folder structure. Please ensure your files are placed in their respective directories:
