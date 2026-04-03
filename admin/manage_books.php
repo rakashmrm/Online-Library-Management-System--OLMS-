@@ -1,5 +1,5 @@
 <?php
-//include('../includes/db.php'); 
+include('../includes/db.php'); 
 include('../includes/header.php');
 
 // DELETE
@@ -64,6 +64,14 @@ if (isset($_GET['search'])) {
         Add Book
     </a>
 
+    <?php if(!empty($search)): ?>
+    <div class="mb-3">
+        <a href="manage_books.php" class="btn btn-secondary btn-sm">
+            🔙 Back to Full Book List
+        </a>
+    </div>
+<?php endif; ?>
+
     <!-- Search Bar -->
     <form method="GET" class="mb-3">
         <div class="input-group shadow-sm">
@@ -73,8 +81,11 @@ if (isset($_GET['search'])) {
         </div>
     </form>
 
-
-
+    <?php if($result->num_rows == 0): ?>
+        <div class="alert alert-warning text-center mt-3">
+        No books found! This book is not in the library.
+        </div>
+    <?php else: ?>
 
     <!-- Table -->
     <div class="card shadow p-3">
@@ -103,19 +114,19 @@ if (isset($_GET['search'])) {
                             <td>
                                 <?php
                                 $cover = $row['cover_image'];
-                                // Check if the string starts with http:// or https://
-                                if (strpos($cover, 'http') === 0) {
-                                    // It's a full URL, use it exactly as it is
-                                    $image_path = $cover;
+                                // If it's a URL
+                                if (filter_var($cover, FILTER_VALIDATE_URL)) {
+                                 $image_path = $cover;
                                 } else {
-                                    // It's a local filename, look in our assets folder
-                                    // We use $base_url to make sure it works from any subfolder
-                                    $image_path = $base_url . "assets/images/" . $cover;
+                                // If it's already stored like assets/images/file.jpg → use directly
+                                $image_path = "../" . $cover;
                                 }
                                 ?>
-                                <img src="<?= $image_path ?>" width="50" height="70" class="book-img shadow-sm rounded"
+                                <img src="<?= $image_path ?>" 
+                                    width="50" height="70" 
+                                    class="book-img shadow-sm rounded"
                                     style="object-fit: cover;"
-                                    onerror="this.src='<?= $base_url ?>assets/images/default-cover.jpg'">
+                                    onerror="this.onerror=null; this.src='../assets/images/default-cover.jpg';">
                             </td>
 
                             <td><?= $row['title'] ?></td>
@@ -147,6 +158,7 @@ if (isset($_GET['search'])) {
 
         </div>
     </div>
+    <?php endif; ?>
 
 </div>
 
