@@ -1,39 +1,61 @@
 <?php 
-//include('../includes/db.php'); 
+include('../includes/db.php'); 
 include('../includes/header.php');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
     $title = $_POST['title'];
     $author = $_POST['author'];
     $category = $_POST['category'];
-    $cover_image = $_POST['cover_image'];
     $total_qty = $_POST['total_qty'];
 
+    // Set available quantity = total initially
     $available_qty = $total_qty;
 
-    $conn->query("INSERT INTO books 
-    (title, author, category, cover_image, total_qty, available_qty)
-    VALUES 
-    ('$title','$author','$category','$cover_image','$total_qty','$available_qty')");
+    $cover_image_path = "";
 
-    header("Location: manage_books.php");
+    // 🔥 1. FILE UPLOAD (PRIORITY)
+    if(isset($_FILES['cover_file']) && $_FILES['cover_file']['name'] != ""){
+
+        $file_name = time() . "_" . $_FILES['cover_file']['name']; // unique name
+        $tmp_name = $_FILES['cover_file']['tmp_name'];
+        $target_dir = "../assets/images/";
+        $target_file = $target_dir . $file_name;
+
+        if(move_uploaded_file($tmp_name, $target_file)){
+            $cover_image_path = "assets/images/" . $file_name;
+        }
+    } 
+    // 🔥 2. URL (fallback)
+    else if(!empty($_POST['cover_image'])){
+        $cover_image_path = $_POST['cover_image'];
+    }
+
+    // Insert into database
+    $sql = "INSERT INTO books (title, author, category, cover_image, total_qty, available_qty)
+            VALUES ('$title', '$author', '$category', '$cover_image_path', $total_qty, $available_qty)";
+
+    if($conn->query($sql)){
+        // Redirect to manage page so you can see it immediately
+        header("Location: manage_books.php");
+        exit();
+    } else {
+        echo "<div class='alert alert-danger'>Error: ".$conn->error."</div>";
+    }
 }
 ?>
 
 <style>
-/* Smooth animation */
 .input-hover {
     transition: all 0.3s ease;
     border-radius: 8px;
 }
 
-/* Hover effect */
 .input-hover:hover {
     transform: scale(1.02);
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
-/* Focus (when typing) */
 .input-hover:focus {
     border-color: #4e73df;
     box-shadow: 0 0 10px rgba(78, 115, 223, 0.5);
@@ -45,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="card shadow p-4">
         <h3 class="mb-4 text-center">Add New Book</h3>
 
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
 
             <div class="mb-3">
                 <label class="form-label"><b>Book Title</b></label>
@@ -63,8 +85,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="mb-3">
-                <label class="form-label"><b>Cover Image URL</b></label>
-                <input type="text" name="cover_image" class="form-control input-hover">
+                <label class="form-label"><b>Cover Image</b></label>
+
+                <!-- Upload File -->
+                <input type="file" name="cover_file" class="form-control input-hover mb-2">
+
+                <!-- OR URL -->
+                <input type="text" name="cover_image" class="form-control input-hover" 
+                       placeholder="Paste image URL here">
+
+                <small class="text-muted">
+                    Upload image (priority) or paste URL
+                </small>
             </div>
 
             <div class="mb-3">
