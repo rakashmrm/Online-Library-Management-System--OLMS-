@@ -5,9 +5,10 @@ Welcome to the repository for our Level 1 Semester 2 Web Technologies Module Fin
 The Online Library Management System (OLMS) is a web-based application designed to allow students to view, borrow, and return books, while administrators can manage the library's inventory. 
 
 ## 🛠️ Technology Stack
-* **Frontend:** HTML5, CSS3, JavaScript, Bootstrap (Responsive UI)
-* **Backend:** PHP
-* **Database:** MySQL (Relational Database)
+* **Frontend:** HTML5, CSS3, JavaScript (ES6), Bootstrap 5.3.
+* **Backend:** PHP 8.x 
+* **Database:** MySQL (Relational)
+* **UI/UX:** Custom Vintage Theme ("Casa Chromatica") with SweetAlert2 integrations.
 
 ## ✨ Features
 * **User Login & Registration:** Secure authentication for students and admins.
@@ -18,19 +19,19 @@ The Online Library Management System (OLMS) is a web-based application designed 
 ## 👥 Team & Modules
 This project is divided into 5 core modules, ensuring a balanced workload across the team:
 
-* **Member 1 (Mithesha Nuwanjana|@MNuwanjana):** Core User Hub (Homepage, User Dashboard & Profile Settings)
-* **Member 2 Thiseni Nudara|@Thiseni-Nuda):** User Authentication (Login, Signup, Logout & Session Management)
-* **Member 3 (Name|@username):** Catalog & UI Lead (Book Search, Discovery, Global CSS/Styling)
-* **Member 4 (Amaya Senadheera|@Amaya-Senadheera):** Admin Panel (Inventory Management: Add, Edit, Delete Books)
+* **Member 1 (Mithesha Nuwanjana|@MNuwanjana):** Team Lead, Integration Architect & Core User Hub (Homepage, User Dashboard & Profile Settings)
+* **Member 2 (Thiseni Nudara|@Thiseni-Nuda):** User Authentication Across all pages (Login, Signup, Logout & Session Management)
+* **Member 3 (Name|@username):** Catalog & UI/UX Lead (Book Search, Discovery, Global CSS/Design System)
+* **Member 4 (Amaya Senadheera|@Amaya-Senadheera):** Admin Panel & Inventory Management (CRUD operation on Book Inventory)
 * **Member 5 (Shehara|@sanjanashehara0707):** Library Operations (Borrowing Logic, Return Actions, & Reviews)
 
 ## 📁 Project Structure
 To prevent merge conflicts and keep our code organized, we are using a modular folder structure. Please ensure your files are placed in their respective directories:
 
 ```text
-olms-web-app/
+Online-Library-Management-System--OLMS-/
 │
-├── includes/               ← (Shared UI & DB Connection)
+├── includes/               ← Member 1 (Shared UI & DB Connection)
 │   ├── db.php
 │   ├── header.php
 │   └── footer.php
@@ -57,6 +58,7 @@ olms-web-app/
 ├── operations/             ← Member 5 (Transactions & Logic)
 │   ├── borrow_action.php
 │   ├── return_action.php
+│   ├── index.php
 │   └── submit_review.php
 │
 ├── assets/                 ← (Shared Styling & Scripts)
@@ -65,14 +67,9 @@ olms-web-app/
 │   └── images/
 │
 ├── database/
-│   └── olms.sql            ← (The single MySQL Database file)
-│   └── seeds/              ← (The dummy data databases)
-│       ├── 01_users_seed.sql       
-│       ├── 02_books_seed.sql        
-│       ├── 03_transactions_seed.sql      
-│       └── 04_reviews_seed.sql        
+│   └── olms.sql            ← (The MySQL Database file)      
 │
-├── index.php               ← (Main App Router)
+├── index.php               ← Member 1 (Main App Router)
 └── README.md
 ```
 
@@ -87,30 +84,12 @@ olms-web-app/
    *(Note: You do not need to create a database first! The script will automatically build the `olms` database and insert the default Admin account).*
 6. **Run the App:** Open `http://localhost/Online-Library-Management-System--OLMS-/` in your browser.
 
-## 🤝 Team Workflow (Fork & Pull)
-1. **Fork** this main repository to your personal GitHub account.
-2. Clone your personal fork to your computer.
-3. Write your code and test it locally.
-4. Push the changes to your personal fork.
-5. Submit a **Pull Request (PR)** to this main repository.
+### 📌 Notes
 
-## Page Template
-Copy and paste this into the top and bottom of your PHP files.
+* This project is built for academic purposes
+* Designed using a modular monolithic architecture
+* Focused on clean UI, usability, and structured backend logic
 
-Note on Paths: If your file is inside a folder (like auth/login.php), you must use ../ to find the includes folder. If your file is in the main root (like index.php), you do not need the ../.
+### Conclusion
 
-For files inside folders (auth/, core/, catalog/, admin/, operations/):
-
-```text
-<?php 
-// 1. Include the header (This handles DB connection, Session, Navbar and CSS)
-include '../includes/header.php'; 
-?>
-
-//your code goes here
-
-<?php 
-// 2. Include the footer (This handles JavaScript and closes tags)
-include '../includes/footer.php'; 
-?>
-```
+The OLMS project demonstrates a complete full-stack web application integrating frontend design, backend logic, and relational database management into a cohesive system.

@@ -11,7 +11,6 @@ $borrowed_query = mysqli_query($conn, "SELECT SUM(total_qty - available_qty) as 
 $borrowed_books = mysqli_fetch_assoc($borrowed_query)['total'];
 $borrowed_books = $borrowed_books ? $borrowed_books : 0;
 
-// UPDATED: Fetch the 5 latest books, and store them in an array
 $latest_books_query = mysqli_query($conn, "SELECT * FROM books ORDER BY id DESC LIMIT 5");
 $latest_books = [];
 while ($row = mysqli_fetch_assoc($latest_books_query)) {
@@ -20,34 +19,26 @@ while ($row = mysqli_fetch_assoc($latest_books_query)) {
 ?>
 
 <style>
-    /* 1. Updated Carousel Wrapper */
     .carousel-wrapper {
         position: relative;
         padding: 0 45px;
         max-width: 1050px;
-        /* Shrinks track width to fit exactly 4 books */
         margin: 0 auto;
-        /* Centers the track perfectly on the screen */
     }
 
-    /* The Scrollable Track */
     .scroll-container {
         display: flex;
         gap: 1.5rem;
         overflow-x: auto;
         scroll-behavior: smooth;
-        /* Smooth gliding when arrows are clicked */
         padding: 15px 5px;
         scrollbar-width: none;
-        /* Hides scrollbar in Firefox */
     }
 
-    /* Hides scrollbar in Chrome/Safari/Edge */
     .scroll-container::-webkit-scrollbar {
         display: none;
     }
 
-    /* 🟢 Navigation Arrows (Updated to Vintage Red-Brown) 🟢 */
     .carousel-btn {
         position: absolute;
         top: 50%;
@@ -79,11 +70,8 @@ while ($row = mysqli_fetch_assoc($latest_books_query)) {
     .book-card-custom {
         width: 220px;
         min-width: 220px;
-        /* Forces card to NEVER squish */
         max-width: 220px;
-        /* Forces card to NEVER stretch */
         flex: 0 0 auto;
-        /* Locks the card size to be perfectly constant */
         white-space: normal;
     }
 
@@ -103,7 +91,6 @@ while ($row = mysqli_fetch_assoc($latest_books_query)) {
         transform: scale(1.05);
     }
 
-    /* 🟢 Badges (Updated to Vintage Olive and Red-Brown) 🟢 */
     .badge-available {
         position: absolute;
         top: 10px;
@@ -128,11 +115,9 @@ while ($row = mysqli_fetch_assoc($latest_books_query)) {
         font-weight: bold;
     }
 
-/* Refined Dark Cinematic Hero */
     .hero-faded {
         position: relative;
-        background-color: #1C110A; /* Dark fallback to match theme */
-        /* Smooth dark gradient fading from left to right */
+        background-color: #1C110A; /* Dark fallback */
         background-image: 
             linear-gradient(to right, rgba(28, 17, 10, 0.7) 0%, rgba(28, 17, 10, 0.4) 100%), 
             url('assets/images/hero-bg.jpg'); 
@@ -141,7 +126,6 @@ while ($row = mysqli_fetch_assoc($latest_books_query)) {
         border: none;
     }
 
-    /* Clean, subtle dark shadow to make white text pop */
     .text-shadow-dark {
         text-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
@@ -191,7 +175,6 @@ while ($row = mysqli_fetch_assoc($latest_books_query)) {
         <div class="scroll-container" id="bookCarousel">
 
             <?php
-            // Loop just once through the 5 latest books
             foreach ($latest_books as $book):
                 ?>
                 <div class="card h-100 shadow-sm border-0 hover-card book-card-custom">
@@ -255,7 +238,6 @@ while ($row = mysqli_fetch_assoc($latest_books_query)) {
         const btnLeft = document.getElementById('btnScrollLeft');
         const btnRight = document.getElementById('btnScrollRight');
 
-        // Width of card (220px) + gap (1.5rem = ~24px)
         const scrollAmount = 244;
 
         btnRight.addEventListener('click', function () {

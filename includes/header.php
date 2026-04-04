@@ -30,7 +30,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
     <title><?php echo $page_title; ?></title>
 
-    <link rel="icon" href="<?php echo $base_url; ?>assets/images/logo.png">
+    <link rel="icon" type="image/png" href="<?php echo $base_url; ?>assets/images/favicon.png?v=1.1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 

@@ -1,5 +1,4 @@
 <?php
-// core/profile.php
 include '../includes/header.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'member') {
@@ -9,9 +8,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'member') {
 
 $user_id = $_SESSION['user_id'];
 
-// ==========================================
-// ⚙️ BACKEND LOGIC: HANDLE FORM SUBMISSIONS
-// ==========================================
+// BACKEND LOGIC: HANDLE FORM SUBMISSIONS
 
 // 1. Handle Profile Update (Username & Email)
 if (isset($_POST['update_profile'])) {
@@ -74,7 +71,6 @@ if (isset($_POST['update_password'])) {
 if (isset($_POST['delete_review_id'])) {
     $review_id = (int) $_POST['delete_review_id'];
 
-    // Ensure they can only delete THEIR OWN review
     $del_sql = "DELETE FROM reviews WHERE id = ? AND user_id = ?";
     $del_stmt = $conn->prepare($del_sql);
     $del_stmt->bind_param("ii", $review_id, $user_id);
@@ -103,9 +99,7 @@ if (isset($_POST['edit_review_id'])) {
     exit();
 }
 
-// ==========================================
-// 📊 FETCH CURRENT DATA FOR DISPLAY
-// ==========================================
+//  FETCH CURRENT DATA FOR DISPLAY
 
 // Get user data
 $user_sql = "SELECT username, email, created_at FROM users WHERE id = $user_id";
@@ -141,19 +135,16 @@ $reviews_result = $conn->query($reviews_sql);
         transition: color 0.2s;
     }
 
-    /* 🟢 Changed star hover color to Antique Gold 🟢 */
     .star-rating label:hover,
     .star-rating label:hover~label,
     .star-rating input:checked~label {
         color: #D4AF37;
     }
 
-    /* Link hover effect */
     .hover-link:hover {
         text-decoration: underline !important;
     }
 
-    /* Sidebar Active State */
     .list-group-item.active {
         background-color: #8C3A35 !important;
         border-color: #8C3A35 !important;
@@ -440,13 +431,11 @@ $reviews_result = $conn->query($reviews_sql);
 </form>
 
 <script>
-    // Function to populate and open the Edit Modal
     function openEditModal(reviewId, rating, comment, bookTitle) {
         document.getElementById('edit_review_id').value = reviewId;
         document.getElementById('edit_comment').value = comment;
         document.getElementById('editModalTitle').innerText = 'Edit Review: ' + bookTitle;
 
-        // Select the correct star rating
         document.getElementById('edit_star' + rating).checked = true;
 
         var editModal = new bootstrap.Modal(document.getElementById('editReviewModal'));
@@ -460,7 +449,7 @@ $reviews_result = $conn->query($reviews_sql);
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#dc3545', // Kept red for danger
+            confirmButtonColor: '#dc3545', 
             cancelButtonColor: '#6c757d',
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {

@@ -1,6 +1,0 @@
--- =====================================================================================
--- TEAM INSTRUCTIONS: 
--- Write your INSERT INTO `reviews` sql queries below this line.
--- Do NOT write any CREATE TABLE commands here.
--- Make sure the user_id and book_id you use actually exist in the 01 and 02 files!
--- =====================================================================================

@@ -33,9 +33,8 @@ while ($row = mysqli_fetch_assoc($current_reads)) {
     $today = new DateTime();
     $row['is_overdue'] = false;
 
-    // Calculate difference
     $interval = $today->diff($due_date);
-    $days_diff = (int) $interval->format("%r%a"); // Positive if in future, negative if past
+    $days_diff = (int) $interval->format("%r%a"); 
 
     if ($days_diff < 0) {
         $row['is_overdue'] = true;
@@ -63,7 +62,6 @@ $history_reads = mysqli_query($conn, $history_sql);
         text-decoration: underline !important;
     }
     
-    /* 🟢 Force the active sidebar link to be Vintage Red-Brown 🟢 */
     .list-group-item.active {
         background-color: #8C3A35 !important;
         border-color: #8C3A35 !important;

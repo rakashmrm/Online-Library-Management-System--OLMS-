@@ -3,7 +3,7 @@
 
 $host = "localhost";
 $username = "root"; // Default XAMPP username
-$password = "";     // Default XAMPP password is blank
+$password = "";     // Default XAMPP password 
 $database = "olms";
 
 // Create the connection
@@ -13,5 +13,5 @@ $conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {
     die("Database Connection Failed: " . $conn->connect_error);
 }
-// If it connects, do nothing! The page will just continue loading.
+// If it connects, do nothing.
 ?>
