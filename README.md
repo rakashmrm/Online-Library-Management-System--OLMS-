@@ -21,7 +21,7 @@ This project is divided into 5 core modules, ensuring a balanced workload across
 
 * **Member 1 (Mithesha Nuwanjana|@MNuwanjana):** Team Lead, Integration Architect & Core User Hub (Homepage, User Dashboard & Profile Settings)
 * **Member 2 (Thiseni Nudara|@Thiseni-Nuda):** User Authentication Across all pages (Login, Signup, Logout & Session Management)
-* **Member 3 (Name|@username):** Catalog & UI/UX Lead (Book Search, Discovery, Global CSS/Design System)
+* **Member 3 (Rakash Mohammedh|@rakashmrm):** Catalog & UI/UX Lead (Book Search, Discovery, Global CSS/Design System)
 * **Member 4 (Amaya Senadheera|@Amaya-Senadheera):** Admin Panel & Inventory Management (CRUD operation on Book Inventory)
 * **Member 5 (Shehara|@sanjanashehara0707):** Library Operations (Borrowing Logic, Return Actions, & Reviews)
 
